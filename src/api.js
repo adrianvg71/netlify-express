@@ -18,6 +18,10 @@ router.get('/', (req, res) => {
 })
 
 router.get('/registro', (req, res) => {
+  const response = fetch('./data/users.json');
+  const data = response.json();
+  res.json(data);
+  /*
   // Ruta al archivo JSON
   const filePath = path.join(__dirname, 'data', 'users.json');
 
@@ -39,7 +43,7 @@ router.get('/registro', (req, res) => {
       // Si hay un error al analizar el JSON, envía una respuesta de error
       res.status(500).json({ error: 'Error al analizar el archivo JSON' });
     }
-  });
+  });*/
 });
 
 // Ruta para el registro de usuarios
@@ -48,7 +52,7 @@ router.post('/registro', (req, res) => {
 
   try {
     // Leer el archivo JSON existente
-    const data = fs.readFileSync(path.join('data', 'users.json'), 'utf8');
+    const data = fs.readFileSync(path('./data/users.json'), 'utf8');
     const users = JSON.parse(data);
 
     // Verificar si el correo ya existe en la matriz de usuarios
@@ -60,7 +64,7 @@ router.post('/registro', (req, res) => {
       users.users.push({ correo, nombre, contraseña });
 
       // Guardar la matriz actualizada en el archivo JSON
-      fs.writeFileSync(path.join('data', 'users.json'), JSON.stringify(users, null, 2), 'utf8');
+      fs.writeFileSync(path('./data/users.json'), JSON.stringify(users, null, 2), 'utf8');
 
       res.status(200).json({ message: 'Usuario registrado con éxito' });
     }
