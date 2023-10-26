@@ -19,27 +19,79 @@ router.get('/', (req, res) => {
 
 router.get('/registro', async (req, res) => {
   try {
-    // Realiza una solicitud GET para obtener el contenido del archivo JSON
-    const response = await fetch('https://registro-inicio.netlify.app/data/users.json');
-    
-    if (response.ok) {
-      const jsonData = await response.json();
-      res.json(jsonData);
-    } else {
-      res.status(500).json({ error: 'Error al obtener el archivo JSON' });
-    }
+    const filePath = path.join('client', 'public', 'data', 'users.json');
+
+    //const filePath = path.join('..\\..\\..\\..', 'client', 'public', 'data', 'users.json');
+    const data = fs.readFileSync(filePath, 'utf8');
+    const users = JSON.parse(data);
+
+    console.log(users)
+    res.json(users);
+  } catch (error) {
+    res.status(500).json({ error: 'Error al obtener el archivo JSON' });
+  }
+  try {
+    const filePath = path.join('data', 'users.json');
+
+    //const filePath = path.join('..\\..\\..\\..', 'client', 'public', 'data', 'users.json');
+    const data = fs.readFileSync(filePath, 'utf8');
+    const users = JSON.parse(data);
+
+    console.log(users)
+    res.json(users);
+  } catch (error) {
+    res.status(500).json({ error: 'Error al obtener el archivo JSON' });
+  }
+  try {
+    const filePath = path.join('..\\..\\..\\..', 'client', 'public', 'data', 'users.json');
+    const data = fs.readFileSync(filePath, 'utf8');
+    const users = JSON.parse(data);
+
+    console.log(users)
+    res.json(users);
+  } catch (error) {
+    res.status(500).json({ error: 'Error al obtener el archivo JSON' });
+  }
+  try {
+    const filePath = path.join('..\\..\\..\\..\\..', 'client', 'public', 'data', 'users.json');
+    const data = fs.readFileSync(filePath, 'utf8');
+    const users = JSON.parse(data);
+
+    console.log(users)
+    res.json(users);
+  } catch (error) {
+    res.status(500).json({ error: 'Error al obtener el archivo JSON' });
+  }
+  try {
+    const filePath = path.join(__dirname, 'data', 'users.json');
+    const data = fs.readFileSync(filePath, 'utf8');
+    const users = JSON.parse(data);
+
+    console.log(users)
+    res.json(users);
+  } catch (error) {
+    res.status(500).json({ error: 'Error al obtener el archivo JSON' });
+  }
+  try {
+    const filePath = path.join(__dirname, 'client', 'public', 'data', 'users.json');
+    const data = fs.readFileSync(filePath, 'utf8');
+    const users = JSON.parse(data);
+
+    console.log(users)
+    res.json(users);
   } catch (error) {
     res.status(500).json({ error: 'Error al obtener el archivo JSON' });
   }
 });
 
-// Ruta para el registro de usuarios
+// Ruta POST para registrar usuarios
 router.post('/registro', (req, res) => {
   const { correo, nombre, contraseña } = req.body;
 
   try {
     // Leer el archivo JSON existente
-    const data = fs.readFileSync(path('./data/users.json'), 'utf8');
+    const filePath = path.join(__dirname, '..', 'client', 'public', 'data', 'users.json');
+    const data = fs.readFileSync(filePath, 'utf8');
     const users = JSON.parse(data);
 
     // Verificar si el correo ya existe en la matriz de usuarios
@@ -51,7 +103,7 @@ router.post('/registro', (req, res) => {
       users.users.push({ correo, nombre, contraseña });
 
       // Guardar la matriz actualizada en el archivo JSON
-      fs.writeFileSync(path('./data/users.json'), JSON.stringify(users, null, 2), 'utf8');
+      fs.writeFileSync(filePath, JSON.stringify(users, null, 2), 'utf8');
 
       res.status(200).json({ message: 'Usuario registrado con éxito' });
     }
