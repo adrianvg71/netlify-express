@@ -19,7 +19,9 @@ router.get('/', (req, res) => {
 
 router.get('/registro', (req, res) => {
   // Ruta al archivo JSON
-  const filePath = path.join(__dirname, '../client/public/data/users.json');
+  const filePath = path.join(__dirname, 'data', 'users.json');
+
+  console.log(filePath)
 
   // Lee el archivo JSON de manera asíncrona
   fs.readFile(filePath, 'utf8', (err, data) => {
@@ -46,7 +48,7 @@ router.post('/registro', (req, res) => {
 
   try {
     // Leer el archivo JSON existente
-    const data = fs.readFileSync(path("../client/public/data/users.json"), 'utf8');
+    const data = fs.readFileSync(path.join(__dirname, 'data', 'users.json'), 'utf8');
     const users = JSON.parse(data);
 
     // Verificar si el correo ya existe en la matriz de usuarios
@@ -58,7 +60,7 @@ router.post('/registro', (req, res) => {
       users.users.push({ correo, nombre, contraseña });
 
       // Guardar la matriz actualizada en el archivo JSON
-      fs.writeFileSync(path.join(__dirname, 'client', 'public', 'data', 'users.json'), JSON.stringify(users, null, 2), 'utf8');
+      fs.writeFileSync(path.join(__dirname, 'data', 'users.json'), JSON.stringify(users, null, 2), 'utf8');
 
       res.status(200).json({ message: 'Usuario registrado con éxito' });
     }
