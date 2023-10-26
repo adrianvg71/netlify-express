@@ -45,8 +45,8 @@ router.post('/registro', (req, res) => {
   }
 });
 
-// Agregar la ruta '/registro' al enrutador principal
-app.use('/.netlify/functions/registro', router);
+
+app.use('/.netlify/functions/api', router);
 
 // Iniciar el servidor
 const port = process.env.PORT || 3000;
