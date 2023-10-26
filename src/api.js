@@ -19,7 +19,7 @@ router.get('/', (req, res) => {
 
 router.get('/registro', (req, res) => {
   // Ruta al archivo JSON
-  const filePath = path.join('data', 'users.json');
+  const filePath = path.join(__dirname, 'data', 'users.json');
 
   console.log(filePath)
   // Lee el archivo JSON de manera asíncrona
