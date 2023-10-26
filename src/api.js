@@ -35,7 +35,7 @@ router.post('/registro', (req, res) => {
       users.users.push({ correo, nombre, contraseña });
 
       // Guardar la matriz actualizada en el archivo JSON
-      fs.writeFileSync(path.join(__dirname, 'public', 'data', 'users.json'), JSON.stringify(users, null, 2), 'utf8');
+      fs.writeFileSync(path.join(__dirname, 'client', 'public', 'data', 'users.json'), JSON.stringify(users, null, 2), 'utf8');
 
       res.status(200).json({ message: 'Usuario registrado con éxito' });
     }
