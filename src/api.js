@@ -17,29 +17,17 @@ router.get('/', (req, res) => {
   })
 })
 
-router.get('/registro', (req, res) => {
-  // Ruta al archivo JSON
-  const filePath = path.join(__dirname, 'data', 'users.json');
+router.get('/registro', async (req, res) => {
+  try {
+    // Realiza una solicitud GET para obtener el contenido del archivo JSON
+    const response = await axios.get('https://registro-inicio.netlify.app/data/users.json');
 
-  console.log(filePath)
-
-  // Lee el archivo JSON de manera asíncrona
-  fs.readFile(filePath, 'utf8', (err, data) => {
-    if (err) {
-      // Si hay un error al leer el archivo, envía una respuesta de error
-      return res.status(500).json({ error: 'Error al leer el archivo JSON' });
-    }
-
-    // Parsea el contenido JSON a un objeto JavaScript
-    try {
-      const jsonData = JSON.parse(data);
-      // Envía el JSON como respuesta
-      res.json(jsonData);
-    } catch (parseError) {
-      // Si hay un error al analizar el JSON, envía una respuesta de error
-      res.status(500).json({ error: 'Error al analizar el archivo JSON' });
-    }
-  });
+    // Envía el contenido del archivo JSON como respuesta
+    res.json(response.data);
+  } catch (error) {
+    // Si ocurre un error en la solicitud, envía una respuesta de error
+    res.status(500).json({ error: 'Error al obtener el archivo JSON' });
+  }
 });
 
 // Ruta para el registro de usuarios
