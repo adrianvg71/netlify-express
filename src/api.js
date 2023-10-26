@@ -17,6 +17,29 @@ router.get('/', (req, res) => {
   })
 })
 
+router.get('/registro', (req, res) => {
+  // Ruta al archivo JSON
+  const filePath = path.join(__dirname, '../client/public/data/users.json');
+
+  // Lee el archivo JSON de manera asíncrona
+  fs.readFile(filePath, 'utf8', (err, data) => {
+    if (err) {
+      // Si hay un error al leer el archivo, envía una respuesta de error
+      return res.status(500).json({ error: 'Error al leer el archivo JSON' });
+    }
+
+    // Parsea el contenido JSON a un objeto JavaScript
+    try {
+      const jsonData = JSON.parse(data);
+      // Envía el JSON como respuesta
+      res.json(jsonData);
+    } catch (parseError) {
+      // Si hay un error al analizar el JSON, envía una respuesta de error
+      res.status(500).json({ error: 'Error al analizar el archivo JSON' });
+    }
+  });
+});
+
 // Ruta para el registro de usuarios
 router.post('/registro', (req, res) => {
   const { correo, nombre, contraseña } = req.body;
