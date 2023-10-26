@@ -22,7 +22,7 @@ async function cargarUsuarios() {
 }
 
 async function cargarHola() {
-  const response = await fetch('../../src/hola.json');
+  const response = await fetch('..\\..\\src\\hola.json');
   const data = await response.json();
   console.log(data)
 }
@@ -30,15 +30,19 @@ async function cargarHola() {
 async function iniciarApp() {
   try {
     await cargarUsuarios();
-    await cargarHola();
     console.log(users);
-
+    
     // Continúa con el resto de tu código aquí.
     if (users) {
       // Tu código para trabajar con los usuarios.
     }
   } catch (error) {
     console.error('Error al cargar usuarios:', error);
+  }
+  try {
+    await cargarHola();
+  } catch (error) {
+    console.log("Error al cargar hola", error)
   }
 }
 
