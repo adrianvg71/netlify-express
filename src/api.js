@@ -28,6 +28,7 @@ router.get('/registro', async (req, res) => {
     console.log(users)
     res.json(users);
   } catch (error) {
+    console.error(error)
     res.status(500).json({ error: 'Error al obtener el archivo JSON' });
   }
   try {
@@ -40,6 +41,7 @@ router.get('/registro', async (req, res) => {
     console.log(users)
     res.json(users);
   } catch (error) {
+    console.error(error)
     res.status(500).json({ error: 'Error al obtener el archivo JSON' });
   }
   try {
@@ -50,6 +52,7 @@ router.get('/registro', async (req, res) => {
     console.log(users)
     res.json(users);
   } catch (error) {
+    console.error(error)
     res.status(500).json({ error: 'Error al obtener el archivo JSON' });
   }
   try {
@@ -60,6 +63,7 @@ router.get('/registro', async (req, res) => {
     console.log(users)
     res.json(users);
   } catch (error) {
+    console.error(error)
     res.status(500).json({ error: 'Error al obtener el archivo JSON' });
   }
   try {
@@ -70,6 +74,7 @@ router.get('/registro', async (req, res) => {
     console.log(users)
     res.json(users);
   } catch (error) {
+    console.error(error)
     res.status(500).json({ error: 'Error al obtener el archivo JSON' });
   }
   try {
@@ -80,6 +85,7 @@ router.get('/registro', async (req, res) => {
     console.log(users)
     res.json(users);
   } catch (error) {
+    console.error(error)
     res.status(500).json({ error: 'Error al obtener el archivo JSON' });
   }
 });
