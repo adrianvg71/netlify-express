@@ -13,7 +13,7 @@ app.use(cors());
 // Test
 router.get('/', (req, res) => {
   try {
-    const filePath = path('./hola.json');
+    const filePath = path('hola.json');
 
     const data = fs.readFileSync(filePath, 'utf8');
     const users = JSON.parse(data);
