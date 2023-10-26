@@ -12,9 +12,18 @@ app.use(cors());
 
 // Test
 router.get('/', (req, res) => {
-  res.json({
-    'hello': 'hola'
-  })
+  try {
+    const filePath = path('./hola.json');
+
+    const data = fs.readFileSync(filePath, 'utf8');
+    const users = JSON.parse(data);
+
+    console.log(users)
+    res.json(users);
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ error: 'Error al obtener el archivo JSON' });
+  }
 })
 
 router.get('/registro', async (req, res) => {
