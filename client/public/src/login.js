@@ -20,9 +20,17 @@ async function cargarUsuarios() {
     users.push(usuario)
   })
 }
+
+async function cargarHola() {
+  const response = await fetch('../../src/hola.json');
+  const data = await response.json();
+  console.log(data)
+}
+
 async function iniciarApp() {
   try {
     await cargarUsuarios();
+    await cargarHola();
     console.log(users);
 
     // Continúa con el resto de tu código aquí.
