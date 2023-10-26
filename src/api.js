@@ -23,7 +23,7 @@ router.post('/registro', (req, res) => {
 
   try {
     // Leer el archivo JSON existente
-    const data = fs.readFileSync(path.join(__dirname, 'client', 'public', 'data', 'users.json'), 'utf8');
+    const data = fs.readFileSync(path("../client/public/data/users.json"), 'utf8');
     const users = JSON.parse(data);
 
     // Verificar si el correo ya existe en la matriz de usuarios
